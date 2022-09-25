@@ -13,6 +13,7 @@ import {
 import {  FaTimes} from 'react-icons/fa'
 import {MdGpsFixed} from "react-icons/md";
 
+
 import {
   useJsApiLoader,
   GoogleMap,
@@ -80,11 +81,12 @@ function App() {
       top={0}
       left={0}
     >
+      <Box position='absolute' top='0' width="100%" height={20} bgColor='white' ><img src={require('../src/graviti.jpg')} alt="#" /></Box>
 
-      <Box position='absolute' top={100} left={500}>
+      <Box position='absolute' top={120} left={500}>
       <header><Text color='blue'>Let's calculate <span style={{fontWeight:'bolder'}}>distance</span> from Google Maps</Text></header>
       </Box>
-      <Box position='absolute' left={670} top={130} h='55%' w='45%' className='map'>
+      <Box position='absolute' left={670} top={160} h='55%' w='45%'>
         {/* Google Map Box */}
         <GoogleMap
           center={center}
@@ -105,27 +107,31 @@ function App() {
         </GoogleMap>
       </Box>
       <Box
+      position='absolute'  top={150} h='61%' w='48%'
         p={4}
         borderRadius='lg'
         m={2}
         bgColor='#e5f6fa'
         shadow='base'
-        maxW="630px"
-        minH="300px"
+        
+        
         zIndex='1'
       >
         <HStack spacing={2} justifyContent='space-between'>
-        <VStack mt={4}>
-          <Box flexGrow={1} m={8}>
+        <VStack mt={0}>
+          <Box flexGrow={1} m={8} mt={2}>
+              <Text fontSize='14px' fontWeight={600}>Origin</Text>
             <Autocomplete>
-              <Input type='text' placeholder='Origin' ref={originRef} />
+              <Input type='text' ref={originRef} bgColor='white' />
             </Autocomplete>
           </Box>
           <Box flexGrow={1}>
+            <Text fontSize='14px' fontWeight={600}>Destination</Text>
             <Autocomplete>
               <Input
                 type='text'
-                placeholder='Destination'
+                bgColor='white'
+                
                 ref={destiantionRef}
                 />
             </Autocomplete>
@@ -133,8 +139,8 @@ function App() {
           </VStack>
 
           <ButtonGroup>
-            <Button colorScheme='blue' type='submit' onClick={calculateRoute} mr={10} marginTop="50px"
-            borderRadius={40}>
+            <Button bgColor='#1B31A8' color='white' type='submit' onClick={calculateRoute} mr={10} marginTop="50px"
+            borderRadius={40} fontSize='16px' lineHeight='20px' fontFamily='Work Sans' fontStyle='normal'>
               Calculate Route
             </Button>
             <IconButton
@@ -149,8 +155,11 @@ function App() {
         <HStack
          spacing={2} mt={8} justifyContent='space-between' bgColor='white'
          p={3}
-         width='50%'
+         width='85%'
+         borderRadius='8px'
          >
+          
+        
           <Text>Distance:<span style={{color:'darkblue' , fontSize:'23px' , fontWeight:'bolder' , padding:'5px'}}> {distance} </span></Text>
           
           <IconButton
@@ -162,15 +171,16 @@ function App() {
               map.setZoom(10)
             }}
           />
+          
         </HStack>
-        <Box>
-        {directionsResponse && (
-            <Text>The distance between {originRef.current.value} and {destiantionRef.current.value} is: {distance} </Text>
-           )}
-
-
-        </Box>
+          <Box>
+          {directionsResponse && (
+              <Text>The distance between <span style={{fontWeight:'bolder'}}>{originRef.current.value}</span> and <span style={{fontWeight:'bolder'}}> {destiantionRef.current.value} </span> is:<span style={{fontWeight:'bolder'}}>{distance}</span> </Text>
+            )}
+          </Box>
         </VStack>
+        
+       
       </Box>
     </Flex>
   )
