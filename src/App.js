@@ -175,7 +175,7 @@ function App() {
         </HStack>
           <Box>
           {directionsResponse && (
-              <Text>The distance between <span style={{fontWeight:'bolder'}}>{originRef.current.value}</span> and <span style={{fontWeight:'bolder'}}> {destiantionRef.current.value} </span> is:<span style={{fontWeight:'bolder'}}>{distance}</span> </Text>
+              <Text>The distance between <span style={{fontWeight:'bolder'}}>{originRef.current.value}</span> and <span style={{fontWeight:'bolder'}}> {destiantionRef.current.value} </span> is: <span style={{fontWeight:'bolder'}}>{distance}</span> </Text>
             )}
           </Box>
         </VStack>
